@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 /**
  * Runner status — one file, no dependencies. Requires Bun and an authenticated gh CLI.
- * RUNNER_ORG=acme RUNNER_REPOS=acme/api,acme/web bun runner-status.ts
- * bun runner-status.ts --test
+ * RUNNER_ORG=acme RUNNER_REPOS=acme/api,acme/web bun apps/runner-status/main.ts
+ * bun apps/runner-status/main.ts --test
  * GitHub API references: docs.github.com/en/rest/actions/{self-hosted-runners,workflow-runs,workflow-jobs}
  */
 import assert from 'node:assert/strict';
@@ -16,7 +16,7 @@ type RepoData = { jobs: (Job & { repo: string; run: Run })[]; fetchedAt: string;
 type Snapshot = { org: string; repos: string[]; runners: Runner[]; jobs: Item[]; sources: { repo: string; fetchedAt: string | null; activeRuns: number; stale: boolean }[]; runnerFetchedAt: string | null; checkedAt: string; errors: string[]; refreshSeconds: number };
 const testing = process.argv.includes('--test');
 if (process.argv.includes('--help')) {
-  console.log('Usage: RUNNER_ORG=acme RUNNER_REPOS=acme/api,acme/web bun runner-status.ts\n\nOptional: PORT=4545 RUNNER_NAME_PREFIX= RUNNER_PUBLIC_HOST=host.example\nRequires gh auth login with access to organization runners and repository Actions.\nRun embedded tests: bun runner-status.ts --test');
+  console.log('Usage: RUNNER_ORG=acme RUNNER_REPOS=acme/api,acme/web bun apps/runner-status/main.ts\n\nOptional: PORT=4545 RUNNER_NAME_PREFIX= RUNNER_PUBLIC_HOST=host.example\nRequires gh auth login with access to organization runners and repository Actions.\nRun embedded tests: bun apps/runner-status/main.ts --test');
   process.exit(0);
 }
 const org = process.env.RUNNER_ORG || (testing ? 'example' : '');

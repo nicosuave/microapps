@@ -2,7 +2,7 @@
 
 ```sh
 gh auth login
-RUNNER_ORG=your-org RUNNER_REPOS=your-org/api,your-org/web bun apps/runner-status.ts
+RUNNER_ORG=your-org RUNNER_REPOS=your-org/api,your-org/web bun apps/runner-status/main.ts
 ```
 
 Open **http://127.0.0.1:4545**.
@@ -40,12 +40,12 @@ For a persistent service, run the same command under launchd on macOS or systemd
 ## Checks
 
 ```sh
-bun apps/runner-status.ts --help
-bun apps/runner-status.ts --test
+bun apps/runner-status/main.ts --help
+bun apps/runner-status/main.ts --test
 # Or run all registered app checks:
 bun run test
 ```
 
 The embedded checks exercise pagination, runner-label matching, job filtering, run deduplication, concurrency, and browser-script syntax without GitHub credentials or network access.
 
-[Source](runner-status.ts) · [All microapps](../README.md)
+[Source](main.ts) · [All microapps](../../README.md)

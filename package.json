@@ -2,6 +2,6 @@
   "name": "microapps",
   "private": true,
   "scripts": {
-    "test": "bun apps/runner-status.ts --test"
+    "test": "bun apps/runner-status/main.ts --test"
   }
 }
